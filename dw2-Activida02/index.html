@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>BIKELEC</title> 
+  <link rel="icon" type="image/ico" href="img/favicon.ico">
+  <!--se integro Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!--se implemento una fuente de Google-->
+  <link href="https://fonts.googleapis.com/css?family=Prompt:200,300,400,500" rel="stylesheet">
+  <!--se implemeto un estilo de "Toastr" que quiere decir Notificaciones emergentes-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+  <!--se implemento un estilo Personalizado-->
+  <link rel="stylesheet" href="style.css">
+  <!--Estilo Css  personalizado-->
+  <style>
+     /* Estilos para la barra de navegación */
+    .navbar-default {
+      background-color: black;
+      border-color: black;
+    }
+
+    .navbar-default .navbar-brand,
+    .navbar-default .navbar-nav > li > a {
+      color: white;
+      font-size: 30px;
+      text-align: center;
+      width: 120%;
+    }
+    /*Se implemmento un Estilos para la tabla de información */
+    .info-table {
+      display: none;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      background-color: #fff;
+      padding: 20px;
+      border: 10px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    .navbar-nav > li:hover .info-table {
+      display: block;
+    }
+
+    .info-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    /*se implemento un Estilos para el pie de página */
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: black;
+      color: white;
+      padding: 10px; /* Aumentado */
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+   <!-- se utilizo una  Barra de navegación -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Bikelec</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="#">HOME</a></li>
+                     <!-- integro Elementos del menú -->
+                    <li><a href="#">Urbana</a>
+                      <!-- Tabla de información para el elemento "Urbana" -->
+                        <div class="info-table">
+                            <table>
+                                <tr><th>Modelo</th><th>Características</th><th>Código de barras</th></tr>
+                                <tr><td>CityCruiser 2000</td><td>Marco de acero resistente.</td><td>012345678901</td></tr>
+                                <tr><td>UrbanGlide Pro</td><td>Marco de aluminio ligero.</td><td>123456789012</td></tr>
+                            </table>
+                        </div>
+                    </li>
+                    <li><a href="#">Trekking</a>
+                        <div class="info-table">
+                            <table>
+                                <tr><th>Modelo</th><th>Características</th><th>Código de barras</th></tr>
+                                <tr><td>TrekMaster 3000</td><td>Marco de aleación de aluminio resistente.</td><td>234567890123</td></tr>
+                                <tr><td>ExplorerX 500</td><td>Marco de acero duradero.</td><td>345678901234</td></tr>
+                            </table>
+                        </div>
+                    </li>
+                    <li><a href="#">Eléctrica</a>
+                        <div class="info-table">
+                            <table>
+                                <tr><th>Modelo</th><th>Características</th><th>Código de barras</th></tr>
+                                <tr><td>EcoRide E2000</td><td>Marco de aluminio ligero y resistente.</td><td>456789012345</td></tr>
+                                <tr><td>PowerPedal P500</td><td>Marco de aleación de aluminio de alta resistencia.</td><td>567890123456</td></tr>
+                            </table>
+                        </div>
+                    </li>
+                    <li><a href="#">Estática</a>
+                        <div class="info-table">
+                            <table>
+                                <tr><th>Modelo</th><th>Características</th><th>Código de barras</th></tr>
+                                <tr><td>CardioCycle 1000</td><td>Diseño compacto y ajustable para uso en interiores.</td><td>678901234567</td></tr>
+                                <tr><td>GymMaster G300</td><td>Estructura robusta de acero.</td><td>789012345678</td></tr>
+                            </table>
+                        </div>
+                    </li>
+                    <!-- Otros elementos del menú con tablas de información similares -->
+                </ul>
+                
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- Formulario de registro -->
+<section class="form-container">
+    <div class="container-fluid">
+      <form class="form-signup" action="/new" method="POST">
+        <h2 id="form-signup-heading">BIKELEC</h2>
+        <div class="name-container input-box">
+          <input type="text" id="name" class="form-control" placeholder="Ingrese su nombre" name="name">
+        </div>
+        <div class="lastname-container input-box">
+          <input type="text" id="lastname" class="form-control" placeholder="Ingrese su apellido" name="lastname">
+        </div>
+         <!-- Otros campos del formulario -->
+        <div class="email-container input-box">
+          <input type="text" id="input-email" class="form-control" placeholder="Ingrese su correo electrónico" autofocus="" name="email">
+        </div>
+        <div class="form-group input-box">
+          <input name="password" type="password" id="input-password" class="form-control" placeholder="Ingrese su contraseña">
+        </div>
+        <div class="form-group input-box">
+          <select class="form-control" name="bike" id="bikeType">
+            <option value="0">Selecciona tu tipo de bici</option>
+            <option value="urbana">Urbana</option>
+            <option value="treking">Treking</option>
+            <option value="electrica">Eléctrica</option>
+            <option value="estatica">Estática</option>
+          </select>
+        </div>
+        <div class="form-group input-box" id="modelContainer"></div>
+        <div class="checkbox ">
+          <label>
+            <input type="checkbox" value="remember-me">
+            <span>Deseo recibir información vía email</span>
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block submit-btn" type="submit">Registrar</button>
+      </form>
+    </div>  
+  </section>
+<!-- Tabla de registros de usuarios -->
+  <div id="registroTable">
+    <h2>Registro de Usuarios</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- Encabezados de la tabla -->
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo Electrónico</th>
+          <th>Contraseña</th>
+          <th>Tipo de Bici</th>
+          <th>Modelo de Bici</th>
+          <th>Código de Barras</th>
+          <th>Recibir Información</th>
+        </tr>
+      </thead>
+      <!-- Cuerpo de la tabla (se llenará dinámicamente con JavaScript) -->
+      <tbody id="registroBody"></tbody>
+    </table>
+  </div>
+<!-- Botón para borrar todos los registros -->
+  <div id="clearButtonContainer">
+    <button id="clearButton" class="btn btn-danger">Borrar Todos los Registros</button>
+  </div>
+
+  <div class="footer"> <!-- Aumentado -->
+    <span>Desarrollador: Ruth Alejandra Quiroz Asturizaga | Diseño Web</span>
+  </div> <!-- Aumentado -->
+ <!-- Scripts -->
+  <!-- implemento jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <!-- Incluir Toastr -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Incluir script principal -->
+  <script src="main.js"></script>
+
+  <script>
+    $('#bikeType').change(function() {
+      var bikeType = $(this).val();
+      var options = '';
+      switch(bikeType) {
+        case 'urbana':
+          options = '<option value="">Selecciona el modelo</option>' +
+                    '<option value="UrbanaX">City Cruiser</option>' +
+                    '<option value="UrbanaY">UrbanGlide Pro</option>';
+          break;
+        case 'treking':
+          options = '<option value="">Selecciona el modelo</option>' +
+                    '<option value="TrekkingA">TrekMaster 3000</option>' +
+                    '<option value="TrekkingB">ExplorerX 500</option>';
+          break;
+        case 'electrica':
+          options = '<option value="">Selecciona el modelo</option>' +
+                    '<option value="EléctricaX">EcoRide E2000</option>' +
+                    '<option value="EléctricaY">PowerPedal P500</option>';
+          break;
+        case 'estatica':
+          options = '<option value="">Selecciona el modelo</option>' +
+                    '<option value="EstáticaA">CardioCycle 1000</option>' +
+                    '<option value="EstáticaB">GymMaster G300</option>';
+          break;
+        default:
+          options = '<option value="">Selecciona el modelo</option>';
+          break;
+      }
+      $('#modelContainer').html('<select class="form-control" id="inputModel" name="model">' + options + '</select>');
+    });
+
+    $('#modelContainer').on('change', '#inputModel', function() {
+      var model = $(this).val();
+      var bikeType = $('#bikeType').val();
+      var barcode = '';
+      switch(bikeType) {
+        case 'urbana':
+          barcode = '1234567890123';
+          break;
+        case 'treking':
+          barcode = '2345678901234';
+          break;
+        case 'electrica':
+          barcode = '3456789012345';
+          break;
+        case 'estatica':
+          barcode = '4567890123456';
+          break;
+        default:
+          barcode = '';
+          break;
+      }
+      $('#registroBody').append('<tr><td>' + $('#name').val() + '</td><td>' + $('#lastname').val() + '</td><td>' + $('#input-email').val() + '</td><td>' + $('#input-password').val() + '</td><td>' + bikeType + '</td><td>' + model + '</td><td>' + barcode + '</td><td>' + ($('input[type="checkbox"]').prop('checked') ? 'Sí' : 'No') + '</td></tr>');
+    });
+  </script>
+</body>
+</html>
